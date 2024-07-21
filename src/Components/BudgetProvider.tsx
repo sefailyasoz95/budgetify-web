@@ -27,9 +27,10 @@ export const BudgetProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 	};
 
 	const getItemList = () => {
-		const itemList = JSON.parse(localStorage.getItem("itemList") ?? "");
-		if (itemList.length) {
-			setItems(itemList);
+		const itemList = localStorage.getItem("itemList");
+		if (itemList) {
+			const parsed = JSON.parse(itemList);
+			setItems(parsed);
 		}
 	};
 
