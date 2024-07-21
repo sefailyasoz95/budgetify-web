@@ -9,6 +9,7 @@ export interface Budget {
 	description: string;
 	amount: number;
 	date: string;
+	type: "income" | "expense";
 }
 
 export interface BudgetContextType {

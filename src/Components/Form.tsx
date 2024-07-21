@@ -24,7 +24,7 @@ const Form = (props: Props) => {
 	return (
 		<form onSubmit={handleSubmit(handleOnSubmit)} className='flex flex-col w-full gap-y-2 items-center'>
 			<div className='input-group'>
-				<label className='text-colors' htmlFor='amount'>
+				<label className={`${errors.amount ? "text-red-600" : "text-colors"} font-medium`} htmlFor='amount'>
 					Amount
 				</label>
 				<input
@@ -36,7 +36,7 @@ const Form = (props: Props) => {
 				/>
 			</div>
 			<div className='input-group'>
-				<label className='text-colors' htmlFor='description'>
+				<label className={`${errors.description ? "text-red-600" : "text-colors"} font-medium`} htmlFor='description'>
 					Description
 				</label>
 				<input
@@ -48,7 +48,7 @@ const Form = (props: Props) => {
 				/>
 			</div>
 			<div className='input-group'>
-				<label className='text-colors' htmlFor='date'>
+				<label className={`${errors.date ? "text-red-600" : "text-colors"} font-medium`} htmlFor='date'>
 					Date
 				</label>
 				<input
@@ -59,6 +59,12 @@ const Form = (props: Props) => {
 					className={`input-classes ${errors.date ? "border-red-600 animate-shake" : "border-transparent"}`}
 				/>
 			</div>
+			<button className='p-[3px] relative'>
+				<div className='absolute inset-0 bg-gradient-to-r from-blue-800 to-blue-600 rounded-lg' />
+				<div className='px-8 py-2 bg-slate-900 rounded-[6px] font-medium relative group transition duration-200 text-white hover:bg-transparent'>
+					Save
+				</div>
+			</button>
 		</form>
 	);
 };
