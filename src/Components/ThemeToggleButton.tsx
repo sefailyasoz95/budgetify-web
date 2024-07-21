@@ -5,6 +5,8 @@ type Props = {};
 
 const ThemeToggleButton = (props: Props) => {
 	const { toggleTheme, theme } = useTheme();
+	console.log("theme: ", theme);
+
 	return (
 		<button onClick={toggleTheme} className='relative p-5 overflow-hidden'>
 			<span

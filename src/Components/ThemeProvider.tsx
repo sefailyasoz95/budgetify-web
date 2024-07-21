@@ -3,9 +3,21 @@ import { Theme } from "../Utils/types";
 import { ThemeContext } from "../Context/ThemeContext";
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-	const [theme, setTheme] = useState<Theme>(() => {
+	const [theme, setTheme] = useState<Theme | undefined>(() => {
+		const preferedTheme = localStorage.getItem("preferedTheme");
+		if (preferedTheme) {
+			preferedTheme === "dark"
+				? document.documentElement.classList.add("dark")
+				: document.documentElement.classList.remove("dark");
+			return preferedTheme as Theme;
+		}
 		const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-		return prefersDarkScheme ? "dark" : "light";
+		if (prefersDarkScheme) {
+			document.documentElement.classList.add("dark");
+			return "dark";
+		} else {
+			return "light";
+		}
 	});
 
 	// Effect to listen for changes in the system theme
@@ -22,8 +34,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 	useEffect(() => {
 		if (theme === "dark") {
 			document.documentElement.classList.add("dark");
+			localStorage.setItem("preferedTheme", "dark");
 		} else {
 			document.documentElement.classList.remove("dark");
+			localStorage.setItem("preferedTheme", "light");
 		}
 	}, [theme]);
 

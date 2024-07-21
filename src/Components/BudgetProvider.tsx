@@ -3,38 +3,38 @@ import { Budget } from "../Utils/types";
 import { BudgetContext } from "../Context/BudgetContext";
 
 export const BudgetProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-	const [budgets, setBudgets] = useState<Budget[]>([]);
+	const [items, setItems] = useState<Budget[]>([]);
 
-	const getBudgetList = () => {
-		const budgetList = JSON.parse(localStorage.getItem("budgetList") ?? "");
-		if (budgetList.length) {
-			setBudgets(budgetList);
+	const addItem = (item: Budget) => {
+		localStorage.setItem("itemList", JSON.stringify([...items, item]));
+		setItems((prevItems) => [...prevItems, item]);
+	};
+
+	const updateItem = (updatedItem: Budget) => {
+		setItems((prevItems) => {
+			const updatedItemList = prevItems.map((item) => (item.id === updatedItem.id ? updatedItem : item));
+			localStorage.setItem("itemList", JSON.stringify(updatedItemList));
+			return updatedItemList;
+		});
+	};
+
+	const deleteItem = (id: string) => {
+		setItems((prevItems) => {
+			const filteredItems = prevItems.filter((item) => item.id !== id);
+			localStorage.setItem("itemList", JSON.stringify(filteredItems));
+			return filteredItems;
+		});
+	};
+
+	const getItemList = () => {
+		const itemList = JSON.parse(localStorage.getItem("itemList") ?? "");
+		if (itemList.length) {
+			setItems(itemList);
 		}
 	};
 
-	const addBudget = (budget: Budget) => {
-		localStorage.setItem("budgetList", JSON.stringify([...budgets, budget]));
-		setBudgets((prevBudgets) => [...prevBudgets, budget]);
-	};
-
-	const updateBudget = (updatedBudget: Budget) => {
-		setBudgets((prevBudgets) => {
-			const updatedBudgetList = prevBudgets.map((budget) => (budget.id === updatedBudget.id ? updatedBudget : budget));
-			localStorage.setItem("budgetList", JSON.stringify(updatedBudgetList));
-			return updatedBudgetList;
-		});
-	};
-
-	const deleteBudget = (id: string) => {
-		setBudgets((prevBudgets) => {
-			const filteredBudgets = prevBudgets.filter((budget) => budget.id !== id);
-			localStorage.setItem("budgetList", JSON.stringify(filteredBudgets));
-			return filteredBudgets;
-		});
-	};
-
 	return (
-		<BudgetContext.Provider value={{ budgets, addBudget, updateBudget, deleteBudget, getBudgetList }}>
+		<BudgetContext.Provider value={{ items, addItem, updateItem, deleteItem, getItemList }}>
 			{children}
 		</BudgetContext.Provider>
 	);

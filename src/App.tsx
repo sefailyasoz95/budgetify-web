@@ -6,7 +6,7 @@ function App() {
 	return (
 		<ThemeProvider>
 			<BudgetProvider>
-				<div className='min-w-7xl min-h-screen flex items-center justify-center dark:bg-slate-900 bg-slate-300 dark:text-white'>
+				<div className='min-w-7xl min-h-screen flex items-center justify-center bg-colors '>
 					<Main />
 				</div>
 			</BudgetProvider>

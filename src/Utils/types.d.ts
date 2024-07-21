@@ -1,6 +1,6 @@
 export type Theme = "light" | "dark";
 export interface ThemeContextType {
-	theme: Theme;
+	theme?: Theme;
 	toggleTheme: () => void;
 }
 
@@ -8,13 +8,13 @@ export interface Budget {
 	id: string;
 	description: string;
 	amount: number;
-	date: Date;
+	date: string;
 }
 
 export interface BudgetContextType {
-	budgets: Budget[];
-	addBudget: (budget: Budget) => void;
-	updateBudget: (budget: Budget) => void;
-	deleteBudget: (id: string) => void;
-	getBudgetList: () => void;
+	items: Budget[];
+	addItem: (budget: Budget) => void;
+	updateItem: (budget: Budget) => void;
+	deleteItem: (id: string) => void;
+	getItemList: () => void;
 }
