@@ -4,6 +4,7 @@ import Header from "./Components/Header";
 import { motion } from "framer-motion";
 import { useBudget } from "./Hooks/useBudgets";
 import { useEffect, useMemo } from "react";
+import AnimatedCounter from "./Components/AnimatedCounter";
 const Main: React.FC = () => {
 	const { items, getItemList } = useBudget();
 	const currentBudget = useMemo(() => {
@@ -25,7 +26,10 @@ const Main: React.FC = () => {
 			className='w-11/12 h-[95vh] no-scrollbar overflow-x-hidden flex flex-col md:w-3/5 xl:md:w-2/5 rounded-xl shadow-gray-700 dark:shadow-gray-500 drop-shadow-lg shadow-lg bg-colors-opposite'>
 			<Header />
 			<div className='flex flex-col w-full items-center justify-center my-2'>
-				<span className='lg:text-7xl text-5xl text-colors'>${currentBudget}</span>
+				<span className='lg:text-7xl text-5xl text-colors'>
+					$
+					<AnimatedCounter to={currentBudget} />
+				</span>
 				<span className='lg:text-3xl text-xl text-colors '>Current Budget</span>
 			</div>
 			<Form />
