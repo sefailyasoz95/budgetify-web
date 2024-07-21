@@ -34,8 +34,7 @@ module.exports = {
 			},
 		},
 		boxShadow: {
-			"input-dark": "0px 0px 10px 0px rgba(95, 95, 95, 0.5);",
-			input: "0px 0px 10px 0px rgba(245,245,245,1);",
+			custom: "0px 0px 10px 0px rgba(95, 95, 95, 0.5);",
 		},
 	},
 	plugins: [],

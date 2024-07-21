@@ -39,7 +39,7 @@ const Form = (props: Props) => {
 					type='number'
 					placeholder='Amount'
 					{...register("amount", { required: true })}
-					className={`input-classes ${errors.amount ? "border-red-600 animate-shake" : "border-transparent"}`}
+					className={`input-classes border-2 ${errors.amount ? "border-red-600 animate-shake" : "border-transparent"}`}
 				/>
 			</div>
 			<div className='input-group'>
@@ -51,7 +51,9 @@ const Form = (props: Props) => {
 					type='text'
 					placeholder='Description'
 					{...register("description", { required: true })}
-					className={`input-classes ${errors.description ? "border-red-600 animate-shake" : "border-transparent"}`}
+					className={`input-classes border-2 ${
+						errors.description ? "border-red-600 animate-shake" : "border-transparent"
+					}`}
 				/>
 			</div>
 			<div className='input-group'>
@@ -63,7 +65,7 @@ const Form = (props: Props) => {
 					type='datetime-local'
 					placeholder='Date'
 					{...register("date", { required: true })}
-					className={`input-classes ${errors.date ? "border-red-600 animate-shake" : "border-transparent"}`}
+					className={`input-classes border-2 ${errors.date ? "border-red-600 animate-shake" : "border-transparent"}`}
 				/>
 			</div>
 			<button className='p-[3px] mt-5 relative'>

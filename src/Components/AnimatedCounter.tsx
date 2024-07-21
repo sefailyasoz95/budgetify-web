@@ -42,7 +42,7 @@ const AnimatedCounter = ({ to, animationOptions }: Props) => {
 		};
 	}, [ref, inView, to]);
 
-	return <span ref={ref} />;
+	return <span className='text-colors' ref={ref} />;
 };
 
 export default AnimatedCounter;

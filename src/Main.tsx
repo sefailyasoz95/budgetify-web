@@ -23,7 +23,7 @@ const Main: React.FC = () => {
 				ease: "easeInOut",
 				delay: 0.5,
 			}}
-			className='w-11/12 h-[95vh] no-scrollbar overflow-x-hidden flex flex-col md:w-3/5 xl:md:w-2/5 rounded-xl shadow-gray-700 dark:shadow-gray-500 drop-shadow-lg shadow-lg bg-colors-opposite'>
+			className='w-11/12 h-[95vh] no-scrollbar overflow-x-hidden flex flex-col md:w-3/5 xl:md:w-2/5 rounded-xl shadow-custom bg-colors-opposite'>
 			<Header />
 			<div className='flex flex-col w-full items-center justify-center my-2'>
 				<span className='lg:text-7xl text-5xl text-colors'>
