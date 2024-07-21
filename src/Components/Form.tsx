@@ -3,26 +3,33 @@ import { FieldValues, useForm } from "react-hook-form";
 import { Budget } from "../Utils/types";
 import moment from "moment";
 import { formatDate } from "../Utils/helpers";
+import { useBudget } from "../Hooks/useBudgets";
 type Props = {};
 
 const Form = (props: Props) => {
+	const { addItem } = useBudget();
 	const {
 		handleSubmit,
 		formState: { errors },
 		register,
 		reset,
+		setValue,
 	} = useForm<Budget>({
 		defaultValues: {
-			amount: 0,
-			date: formatDate(new Date()),
+			amount: undefined,
+			date: undefined,
 			description: "",
-			id: new Date().getTime().toString(),
+			id: undefined,
 		},
 	});
 
-	const handleOnSubmit = (data: FieldValues) => {};
+	const handleOnSubmit = (data: Budget) => {
+		addItem({ ...data, type: data.amount < 0 ? "expense" : "income", id: new Date().getTime().toString() });
+		reset();
+		setValue("date", formatDate(new Date()));
+	};
 	return (
-		<form onSubmit={handleSubmit(handleOnSubmit)} className='flex flex-col w-full gap-y-2 items-center'>
+		<form onSubmit={handleSubmit(handleOnSubmit)} className='flex flex-col w-full gap-y-2 mb-5 items-center'>
 			<div className='input-group'>
 				<label className={`${errors.amount ? "text-red-600" : "text-colors"} font-medium`} htmlFor='amount'>
 					Amount
@@ -59,7 +66,7 @@ const Form = (props: Props) => {
 					className={`input-classes ${errors.date ? "border-red-600 animate-shake" : "border-transparent"}`}
 				/>
 			</div>
-			<button className='p-[3px] relative'>
+			<button className='p-[3px] mt-5 relative'>
 				<div className='absolute inset-0 bg-gradient-to-r from-blue-800 to-blue-600 rounded-lg' />
 				<div className='px-8 py-2 bg-slate-900 rounded-[6px] font-medium relative group transition duration-200 text-white hover:bg-transparent'>
 					Save

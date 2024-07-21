@@ -5,7 +5,17 @@
 body * {
   @apply transition-colors duration-1000;
 }
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
 @keyframes rise-animation {
   0% {
     opacity: 0;
@@ -60,4 +70,11 @@ body * {
 }
 .input-group {
   @apply flex flex-col w-4/5 lg:w-3/4 mx-auto
+}
+.budget-item svg {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+.budget-item:hover svg {
+  opacity: 1
 }

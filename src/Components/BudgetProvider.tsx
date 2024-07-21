@@ -1,31 +1,9 @@
 import { ReactNode, useState } from "react";
 import { Budget } from "../Utils/types";
 import { BudgetContext } from "../Context/BudgetContext";
-const Dummy: Array<Budget> = [
-	{
-		id: "1",
-		amount: -200,
-		date: "07/10/2024",
-		description: "Groceries Groceries Groceries",
-		type: "expense",
-	},
-	{
-		id: "2",
-		amount: -100,
-		date: "07/10/2024",
-		description: "Groceries Groceries Groceries",
-		type: "expense",
-	},
-	{
-		id: "3",
-		amount: 2000,
-		date: "07/10/2024",
-		description: "Salary",
-		type: "income",
-	},
-];
+
 export const BudgetProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-	const [items, setItems] = useState<Budget[]>(Dummy);
+	const [items, setItems] = useState<Budget[]>([]);
 
 	const addItem = (item: Budget) => {
 		localStorage.setItem("itemList", JSON.stringify([...items, item]));

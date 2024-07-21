@@ -8,11 +8,25 @@ const BudgetListing = (props: Props) => {
 	const { items } = useBudget();
 
 	return (
-		<AnimatePresence>
-			{items.map((item, index) => (
-				<BudgetItem item={item} key={index} />
-			))}
-		</AnimatePresence>
+		<div className='overflow-y-scroll no-scrollbar'>
+			<AnimatePresence>
+				{items.length > 0 ? (
+					items.map((item, index) => <BudgetItem item={item} key={index} />)
+				) : (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						transition={{
+							duration: 0.5,
+							ease: "easeInOut",
+							delay: 1,
+						}}
+						className='text-xl font-medium text-center mt-10'>
+						You haven't add any items yet!
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</div>
 	);
 };
 
