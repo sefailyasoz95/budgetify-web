@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BudgetProvider } from "./Components/BudgetProvider";
+import { ThemeProvider } from "./Components/ThemeProvider";
+import Main from "./Main";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<ThemeProvider>
+			<BudgetProvider>
+				<div className='min-w-7xl min-h-screen flex items-center justify-center dark:bg-slate-900 bg-slate-300 dark:text-white'>
+					<Main />
+				</div>
+			</BudgetProvider>
+		</ThemeProvider>
+	);
 }
 
 export default App;
